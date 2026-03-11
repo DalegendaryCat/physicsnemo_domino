@@ -1,0 +1,4 @@
+- etl.source.input_dir=/Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input
+- etl.sink.output_dir=/Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_processed
+- etl.common.model_type=surface
+- serialization_format=numpy

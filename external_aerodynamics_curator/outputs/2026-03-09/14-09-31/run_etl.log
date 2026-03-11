@@ -1,0 +1,14 @@
+[2026-03-09 14:09:33,295][data_transformations][INFO] - Initializing ExternalAerodynamicsSurfaceTransformation with surface_variables: {'p': 'scalar', 'U': 'vector'} and surface_processors: [functools.partial(<function decimate_mesh at 0x12f341c70>, algo='decimate_pro', reduction=0.0, preserve_topology=False), functools.partial(<function normalize_surface_normals at 0x12f341590>), functools.partial(<function non_dimensionalize_surface_fields at 0x12f3416f0>, air_density=1.225, stream_velocity=2.0), functools.partial(<function update_surface_data_to_float32 at 0x12f3419b0>)]
+[2026-03-09 14:09:33,295][data_transformations][INFO] - This will only be processed if the model_type is surface/combined.
+[2026-03-09 14:09:33,296][data_transformations][INFO] - Initializing ExternalAerodynamicsVolumeTransformation with volume_variables: {'U': 'vector', 'p': 'scalar'} and volume_processors: [functools.partial(<function non_dimensionalize_volume_fields at 0x12f342140>), functools.partial(<function update_volume_data_to_float32 at 0x12f342400>), functools.partial(<function shuffle_volume_data at 0x12f3426c0>)]
+[2026-03-09 14:09:33,296][data_transformations][INFO] - This will only be processed if the model_type is volume/combined.
+[2026-03-09 14:09:33,297][physicsnemo_curator.utils.utils][INFO] - Starting ETL pipeline
+[2026-03-09 14:09:33,298][ExternalAerodynamicsDatasetValidator][INFO] - Starting External Aerodynamics dataset validation (level: fields)
+[2026-03-09 14:09:33,299][ExternalAerodynamicsDatasetValidator][INFO] - Found 3 case directories to validate
+[2026-03-09 14:09:34,751][ExternalAerodynamicsDatasetValidator][WARNING] - Validation found 6 errors
+[2026-03-09 14:09:34,752][physicsnemo_curator.utils.utils][ERROR] - /Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input/test/test.stl: Geometry file not found
+[2026-03-09 14:09:34,752][physicsnemo_curator.utils.utils][ERROR] - /Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input/test/test.vtp: Surface data file not found
+[2026-03-09 14:09:34,752][physicsnemo_curator.utils.utils][ERROR] - /Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input/validation/validation.stl: Geometry file not found
+[2026-03-09 14:09:34,752][physicsnemo_curator.utils.utils][ERROR] - /Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input/validation/validation.vtp: Surface data file not found
+[2026-03-09 14:09:34,752][physicsnemo_curator.utils.utils][ERROR] - /Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input/train/train.stl: Geometry file not found
+[2026-03-09 14:09:34,752][physicsnemo_curator.utils.utils][ERROR] - /Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input/train/train.vtp: Surface data file not found

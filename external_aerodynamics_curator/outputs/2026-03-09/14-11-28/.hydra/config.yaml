@@ -1,0 +1,87 @@
+etl:
+  transformations:
+    surface_preprocessing:
+      surface_variables:
+        p: scalar
+        U: vector
+      _target_: data_transformations.ExternalAerodynamicsSurfaceTransformation
+      _convert_: all
+      surface_processors:
+      - _target_: external_aero_surface_data_processors.decimate_mesh
+        _partial_: true
+        algo: decimate_pro
+        reduction: 0.0
+        preserve_topology: false
+      - _target_: external_aero_surface_data_processors.normalize_surface_normals
+        _partial_: true
+      - _target_: external_aero_surface_data_processors.non_dimensionalize_surface_fields
+        _partial_: true
+        air_density: 1.225
+        stream_velocity: 2.0
+      - _target_: external_aero_surface_data_processors.update_surface_data_to_float32
+        _partial_: true
+    volume_preprocessing:
+      volume_variables:
+        U: vector
+        p: scalar
+      _target_: data_transformations.ExternalAerodynamicsVolumeTransformation
+      _convert_: all
+      volume_processors:
+      - _target_: external_aero_volume_data_processors.non_dimensionalize_volume_fields
+        _partial_: true
+      - _target_: external_aero_volume_data_processors.update_volume_data_to_float32
+        _partial_: true
+      - _target_: external_aero_volume_data_processors.shuffle_volume_data
+        _partial_: true
+    stl_preprocessing:
+      _target_: data_transformations.ExternalAerodynamicsSTLTransformation
+      _convert_: all
+      geometry_processors:
+      - _target_: external_aero_geometry_data_processors.update_geometry_data_to_float32
+        _partial_: true
+    global_params_preprocessing:
+      _target_: data_transformations.ExternalAerodynamicsGlobalParamsTransformation
+      _convert_: all
+      global_parameters: ${etl.global_parameters}
+      global_params_processors:
+      - _target_: external_aero_global_params_data_processors.process_global_params_hdb
+        _partial_: true
+    write_ready_transformation: ${override_transformations.write_ready_transformation}
+  global_parameters:
+    inlet_velocity:
+      type: vector
+      reference:
+      - 0.0
+      - -2.0
+    air_density:
+      type: scalar
+      reference: 1.225
+  common:
+    kind: hdb
+    model_type: surface
+  processing:
+    num_processes: 12
+    args: {}
+  validator:
+    _target_: dataset_validator.ExternalAerodynamicsDatasetValidator
+    _convert_: all
+    validation_level: fields
+  source:
+    _target_: data_sources.ExternalAerodynamicsDataSource
+    _convert_: all
+    input_dir: /Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input/validation
+    kind: ${etl.common.kind}
+    model_type: ${etl.common.model_type}
+  sink:
+    _target_: data_sources.ExternalAerodynamicsDataSource
+    _convert_: all
+    output_dir: /Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_processed/validation
+    kind: ${etl.common.kind}
+    serialization_method: ${serialization_format.serialization_method}
+    overwrite_existing: true
+serialization_format:
+  serialization_method: numpy
+override_transformations:
+  write_ready_transformation:
+    _target_: data_transformations.ExternalAerodynamicsNumpyTransformation
+    _convert_: all

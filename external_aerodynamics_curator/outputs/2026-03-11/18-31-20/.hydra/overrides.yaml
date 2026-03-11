@@ -1,0 +1,4 @@
+- etl.source.input_dir=/Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_input/test
+- etl.sink.output_dir=/Users/nguyentuanphong/Desktop/ASTAR_Internship/PhysicsNeMo/HDB/Dataset/hdb_processed/test
+- etl.common.model_type=combined
+- serialization_format=numpy

@@ -1,0 +1,4 @@
+- etl.source.input_dir=/path/to/hdb_input/train
+- etl.sink.output_dir=/path/to/hdb_processed/train
+- etl.common.model_type=surface
+- serialization_format=numpy
